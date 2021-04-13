@@ -2,7 +2,7 @@
 
 namespace BattleshipsEngine
 {
-    interface IShip
+    public interface IShip
     {
         public int GetLength();
         //public int GetDamage();
