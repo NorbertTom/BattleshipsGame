@@ -2,7 +2,7 @@
 
 namespace BattleshipsEngine
 {
-    class Field
+    class Field : IField
     {
         public Field()
         { }
