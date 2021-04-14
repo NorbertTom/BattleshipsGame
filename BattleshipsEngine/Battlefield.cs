@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BattleshipsEngine
 {
-    class Battlefield
+    class Battlefield : IBattlefield
     {
         public Battlefield()
         {}

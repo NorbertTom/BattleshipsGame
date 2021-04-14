@@ -1,6 +1,5 @@
 ﻿using System;
 using Xunit;
-using Moq;
 using BattleshipsEngine;
 
 namespace BattleshipsEngineTests
@@ -11,12 +10,10 @@ namespace BattleshipsEngineTests
         public void acquireFieldsTest()
         {
             var battlefield = new Battlefield();
-            
             Field[,] fields = new Field[10, 10];
             Assert.True(battlefield.AcquireFields(fields));
             Field[,] fieldsInvalid = new Field[11, 11];
             Assert.False(battlefield.AcquireFields(fieldsInvalid));
-
         }
 
         [Fact]
