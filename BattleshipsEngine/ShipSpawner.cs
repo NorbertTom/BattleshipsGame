@@ -19,7 +19,7 @@ namespace BattleshipsEngine
             bool shipSpawned = false;
 
             shipsLength = ship.GetLength();
-            isVertical = random.Next(0,1) == 0 ? true : false;
+            isVertical = random.Next(2) == 0 ? true : false;
             int[] startingPosition = new int[2];
             int nrOfCycles = 0;
 
@@ -43,13 +43,13 @@ namespace BattleshipsEngine
 
             if (isVertical)
             {
-                column = random.Next(0, BattlefieldSize);
-                row = random.Next(0, BattlefieldSize - shipsLength + 1);
+                column = random.Next(BattlefieldSize+1);
+                row = random.Next(BattlefieldSize - shipsLength + 2);
             }
             else 
             {
-                column = random.Next(0, BattlefieldSize - shipsLength + 1);
-                row = random.Next(0, BattlefieldSize);
+                column = random.Next(BattlefieldSize - shipsLength + 2);
+                row = random.Next(BattlefieldSize+1);
             }
 
             int[] result = { column, row };
