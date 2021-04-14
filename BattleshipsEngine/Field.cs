@@ -21,6 +21,11 @@ namespace BattleshipsEngine
             return ship;
         }
 
+        public bool IsShipThere()
+        {
+            return ship != null;
+        }
+
         private bool wasShot = false;
         private IShip ship = null;
     }

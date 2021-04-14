@@ -2,9 +2,10 @@
 
 namespace BattleshipsEngine
 {
-    interface IField
+    public interface IField
     {
         public bool IfShot();
+        public bool IsShipThere();
         public void PlaceShip(IShip ship);
         public IShip Shoot();
     }

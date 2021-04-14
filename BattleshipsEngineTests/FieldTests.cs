@@ -37,5 +37,17 @@ namespace BattleshipsEngineTests
             Assert.Equal(mockShip.Object, field.Shoot());
             Assert.True(field.IfShot());
         }
+
+        [Fact]
+        public void IsShipThereTest()
+        {
+            var mockShip = new Mock<IShip>();
+            var field = new Field();
+
+            Assert.False(field.IsShipThere());
+
+            field.PlaceShip(mockShip.Object);
+            Assert.True(field.IsShipThere());
+        }
     }
 }

@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsGame", "BattleshipsGame\BattleshipsGame.csproj", "{1BD481D4-4834-45AA-9884-56B51DC777DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipsGame", "BattleshipsGame\BattleshipsGame.csproj", "{1BD481D4-4834-45AA-9884-56B51DC777DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsEngine", "BattleshipsEngine\BattleshipsEngine.csproj", "{363506F1-AD7A-4DBC-99DC-0F2CF729AE45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipsEngine", "BattleshipsEngine\BattleshipsEngine.csproj", "{363506F1-AD7A-4DBC-99DC-0F2CF729AE45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsEngineTests", "BattleshipsEngineTests\BattleshipsEngineTests.csproj", "{496F0EDE-C56F-4546-A456-45CC7CF1CA41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipsEngineTests", "BattleshipsEngineTests\BattleshipsEngineTests.csproj", "{496F0EDE-C56F-4546-A456-45CC7CF1CA41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsGameTests", "BattleshipsGameTests\BattleshipsGameTests.csproj", "{A4C51C49-F7B5-4D3D-A369-90E939CFEED0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{496F0EDE-C56F-4546-A456-45CC7CF1CA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{496F0EDE-C56F-4546-A456-45CC7CF1CA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{496F0EDE-C56F-4546-A456-45CC7CF1CA41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C51C49-F7B5-4D3D-A369-90E939CFEED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C51C49-F7B5-4D3D-A369-90E939CFEED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C51C49-F7B5-4D3D-A369-90E939CFEED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C51C49-F7B5-4D3D-A369-90E939CFEED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
