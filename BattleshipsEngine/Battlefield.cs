@@ -12,11 +12,13 @@ namespace BattleshipsEngine
         public bool AcquireFields(IField[,] fields)
         {
             bool result = false;
+            
             if (fields.Length == 100)
             {
                 this.fields = fields;
                 result = true;
             }
+
             return result;
         }
         
@@ -25,6 +27,6 @@ namespace BattleshipsEngine
             return fields[column, row];
         }
 
-        IField[,] fields = new IField[10 , 10];
+        IField[,] fields;
     }
 }

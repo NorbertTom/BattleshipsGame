@@ -11,10 +11,12 @@ namespace BattleshipsEngineTests
         public void acquireFieldsTest()
         {
             var battlefield = new Battlefield();
-            //Mock<IField>[,] mockedFields = new Mock<IField>[10, 10];
             
             Field[,] fields = new Field[10, 10];
             Assert.True(battlefield.AcquireFields(fields));
+            Field[,] fieldsInvalid = new Field[11, 11];
+            Assert.False(battlefield.AcquireFields(fieldsInvalid));
+
         }
 
         [Fact]
@@ -30,7 +32,15 @@ namespace BattleshipsEngineTests
 
         [Fact]
         public void getFieldThatWasPreviouslyShot()
-        { }
+        {
+            var battlefield = new Battlefield();
+            Field[,] fields = new Field[10, 10];
+            initializeFields(fields);
+            battlefield.AcquireFields(fields);
+            Assert.False(battlefield.GetField(3, 9).IfShot());
+            battlefield.GetField(3, 9).Shoot();
+            Assert.True(battlefield.GetField(3, 9).IfShot());
+        }
 
         private void initializeFields(Field[,] fields)
         {
