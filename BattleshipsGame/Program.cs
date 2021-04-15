@@ -12,42 +12,53 @@ namespace BattleshipsGame
             game.Initialize();
 
             UIMessages.OpeningMessage();
+            Console.ReadLine();
 
             while (game.ShouldKeepPlaying())
             {
-                var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.GetBattlefield());
-                uIBattlefieldPrinter.Print();
-                UIMessages.AskForCoordinatesMessage();
-                string coordsInput = Console.ReadLine();
-                bool inputValid = ValidateUserInput.coordinates(coordsInput);
-                if (inputValid)
-                {
-                    IShot shot = game.PrepareShot(coordsInput);
-                    if (shot.IsShotValid())
-                    {
-                        bool shipHit = shot.Fire();
-                        if (shipHit)
-                        {
-                            //check if it's not sunken
-                            IShip ship = shot.GetHitShip();
-                            UIMessages.HitMessage(ship.GetName());
-                        }
-                        else
-                        {
-                            UIMessages.MissMessage();
-                        }
-                    }
-                    else
-                    {
-                        UIMessages.FieldAlreadyShotMessage();
-                    }
-                }
-                else
-                {
-                    UIMessages.InvalidCoordinatesInputMessage();
-                }
+                executeGameLoop(game);
             }
-            Console.WriteLine("Hello World! ");
+            UIMessages.GameEndMessage();
+        }
+
+        static void executeGameLoop(IGame game)
+        {
+            var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.GetBattlefield());
+            uIBattlefieldPrinter.Print();
+
+            UIMessages.AskForCoordinatesMessage();
+            string coordsInput = Console.ReadLine();
+            bool inputValid = ValidateUserInput.coordinates(coordsInput);
+            if (!inputValid)
+            {
+                UIMessages.InvalidCoordinatesInputMessage();
+                return;
+            }
+
+            IShot shot = game.PrepareShot(coordsInput);
+            if (!(shot.IsShotValid()))
+            {
+                UIMessages.FieldAlreadyShotMessage();
+                return;
+            }
+
+            bool isShipHit = shot.Fire();
+            if (isShipHit)
+            {
+                string message = getInfoAboutShip(shot.GetHitShip());
+                UIMessages.HitMessage(message);
+            }
+            else
+            {
+                UIMessages.MissMessage();
+            }
+        }
+
+        static string getInfoAboutShip(IShip ship)
+        {
+            string message = ship.GetName();
+            message = ship.IsDestroyed() ? message + ". You sunk the ship." : message;
+            return message;
         }
     }
 }

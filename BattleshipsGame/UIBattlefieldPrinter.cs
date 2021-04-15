@@ -22,8 +22,8 @@ namespace BattleshipsGame
 
         private void printLegendRows()
         {
-            Console.WriteLine("   ABCDEFGHIJ");
-            Console.WriteLine("  -----------");
+            Console.WriteLine("\n   ABCDEFGHIJ\n" +
+                                 "  -----------");
         }
 
         private void printRow(int rowNr)

@@ -6,32 +6,44 @@ namespace BattleshipsGame
     {
         public static void OpeningMessage()
         {
-            Console.WriteLine("That will be an opening message.");
+            Console.Write("Welcome to the Battleships Game.\n" +
+                          "There are 3 ships you have to shoot down:\n" +
+                          "1 Battleship (5 units long)\n" +
+                          "2 Destroyers (4 units long)\n" +
+                          "You shoot by entering the coordinates as two characters:\n" +
+                          "capital letter as a column and number as a row, and pressing ENTER\n" +
+                          "Please use no spacing between them\n" +
+                          "If you are ready to have some fun please hit ENTER\n");
         }
 
         public static void AskForCoordinatesMessage()
         {
-            Console.WriteLine("That will be a message asking for coordinates.");
+            Console.WriteLine("Please enter the coordinates (example: A7)");
         }
 
         public static void InvalidCoordinatesInputMessage()
         {
-            Console.WriteLine("That will be a message saying you input wrong coordinates.");
+            Console.WriteLine("You entered incorrect coordinates, please try again");
         }
 
         public static void FieldAlreadyShotMessage()
         {
-            Console.WriteLine("That will be a message saying field was already shot");
+            Console.WriteLine("You have already shot that field, please choose different one");
         }
 
         public static void MissMessage()
         {
-            Console.WriteLine("That will be a message saying you missed");
+            Console.WriteLine("MISS");
         }
 
         public static void HitMessage(string shipsName)
         {
-            Console.WriteLine("That will be a message saying you hit " + shipsName);
+            Console.WriteLine("HIT: " + shipsName);
+        }
+
+        public static void GameEndMessage()
+        {
+            Console.WriteLine("You destroyed all ships. Congratulations!");
         }
     }
 }

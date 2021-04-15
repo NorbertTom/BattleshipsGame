@@ -2,7 +2,7 @@
 
 namespace BattleshipsEngine
 {
-    public class Game
+    public class Game : IGame
     {
         public Game()
         {}
