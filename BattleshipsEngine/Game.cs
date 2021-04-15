@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BattleshipsEngine
 {
@@ -16,6 +14,8 @@ namespace BattleshipsEngine
 
         public void Initialize()
         {
+            const int MaxScoreInGame = 13;
+            playerScore = new PlayerScore(MaxScoreInGame);
             battlefield = new Battlefield();
             GameInitializer.Initialize(battlefield);
             //Ships
@@ -25,10 +25,12 @@ namespace BattleshipsEngine
         public IShot PrepareShot(string coordinates)
         {
             int[] coordsInt = Helpers.TranslateCoordinates(coordinates);
-            var shot = new Shot(battlefield, coordsInt);
+            var shot = new Shot(battlefield, playerScore, coordsInt);
             return shot;
         }
 
         private Battlefield battlefield;
+        private PlayerScore playerScore;
+        private Random random;
     }
 }

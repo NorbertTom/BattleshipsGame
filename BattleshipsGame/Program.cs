@@ -2,12 +2,15 @@
 
 namespace BattleshipsGame
 {
+    using BattleshipsEngine;
+
     class Program
     {
         static void Main(string[] args)
         {
-            // var game = new Game();
-            // game initialization
+            var game = new Game();
+            game.Initialize();
+
             UIMessages.OpeningMessage();
 
             bool gameOn = true; // connection from game needed - if enough points was scored or not
@@ -19,9 +22,20 @@ namespace BattleshipsGame
                 bool inputValid = ValidateUserInput.coordinates(coordsInput);
                 if (inputValid)
                 {
-                    // Translate coords string to coords, should be part of Game project / really?
-                    // Shoot (coords) - needs Shoot class, or IShot and than GetName and GetOutcome
-
+                    //IShot shot = game.PrepareShot
+                    //if (shot.IsShotValid()))
+                        //bool result = shot.Fire();
+                        //if (result)
+                            //IShip ship = shot.GetHitShip()
+                            //UI message -> you hit XX Ship!
+                        //else
+                            //UI message -> you missed
+                    //else
+                        //UI message -> field already shot
+                }
+                else
+                {
+                    //UI Message -> invalid input
                 }
             }
             Console.WriteLine("Hello World! ");
