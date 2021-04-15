@@ -8,11 +8,13 @@ namespace BattleshipsEngineTests
     public class GameInitializerTests
     {
         [Fact]
-        public void initializeBattlefield()
+        public void createGame()
         {
-            var battlefield = new Mock<IBattlefield>();
-            GameInitializer.Initialize(battlefield.Object);
-            battlefield.Verify(x => x.AcquireFields(It.IsAny<Field[,]>()), Times.Once());
+            var random = new Random();
+            var initializer = new GameInitializer(random);
+            var game = initializer.createGame();
+            Assert.NotNull(game);
+            Assert.NotNull(game.GetBattlefield());
         }
     }
 }

@@ -1,21 +1,12 @@
-﻿using System;
-
+﻿
 namespace BattleshipsEngine
 {
-    public class Game : IGame
+    class Game : IGame
     {
-        public Game()
-        {}
-
-        public void Initialize()
+        public Game(IBattlefield battlefield, IPlayerScore playerScore)
         {
-            const int MaxScoreInGame = 13;
-            playerScore = new PlayerScore(MaxScoreInGame);
-            battlefield = new Battlefield();
-            random = new Random();
-            GameInitializer.Initialize(battlefield);
-            Ship[] ships = { new Battleship(), new Destroyer(), new Destroyer() };
-            GameInitializer.SpawnShips(battlefield, random, ships);
+            this.battlefield = battlefield;
+            this.playerScore = playerScore;
         }
 
         public IBattlefield GetBattlefield()
@@ -35,8 +26,7 @@ namespace BattleshipsEngine
             return !(playerScore.HasGameEnded());
         }
 
-        private Battlefield battlefield;
-        private PlayerScore playerScore;
-        private Random random;
+        private IBattlefield battlefield;
+        private IPlayerScore playerScore;
     }
 }

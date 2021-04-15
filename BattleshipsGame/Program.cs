@@ -8,8 +8,9 @@ namespace BattleshipsGame
     {
         static void Main(string[] args)
         {
-            var game = new Game();
-            game.Initialize();
+            Random random = new Random();
+            var gameInitializer = new GameInitializer(random);
+            var game = gameInitializer.createGame();
 
             UIMessages.OpeningMessage();
             Console.ReadLine();

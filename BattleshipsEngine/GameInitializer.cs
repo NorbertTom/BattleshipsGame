@@ -3,16 +3,34 @@ using System.Diagnostics;
 
 namespace BattleshipsEngine
 {
-    static class GameInitializer
+    public class GameInitializer
     {
-        public static void Initialize(IBattlefield battlefield)
+        public GameInitializer(Random random)
+        {
+            this.random = random;
+        }
+
+        public IGame createGame()
+        {
+            const int MaxScoreInGame = 13;
+            var playerScore = new PlayerScore(MaxScoreInGame);
+            var battlefield = new Battlefield();
+            Initialize(battlefield);
+            Ship[] ships = { new Battleship(), new Destroyer(), new Destroyer() };
+            SpawnShips(battlefield, random, ships);
+
+            var game = new Game(battlefield, playerScore);
+            return game;
+        }
+
+        private void Initialize(IBattlefield battlefield)
         {
             var fields = new Field[BattlefieldSize, BattlefieldSize];
             initializeFields(fields);
             battlefield.AcquireFields(fields);
         }
 
-        public static void SpawnShips(IBattlefield battlefield, Random random, IShip[] ships)
+        private void SpawnShips(IBattlefield battlefield, Random random, IShip[] ships)
         {
             var shipSpawner = new ShipSpawner(battlefield, random);
             for (int i = 0; i < ships.Length; i++)
@@ -22,7 +40,7 @@ namespace BattleshipsEngine
             }
         }
 
-        private static void initializeFields(Field[,] fields)
+        private void initializeFields(Field[,] fields)
         {
             for (int i=0; i < BattlefieldSize; i++)
             {
@@ -33,6 +51,7 @@ namespace BattleshipsEngine
             }
         }
 
-        static int BattlefieldSize = 10;
+        Random random;
+        const int BattlefieldSize = 10;
     }
 }

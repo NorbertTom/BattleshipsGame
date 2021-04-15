@@ -1,5 +1,6 @@
 ﻿using System;
 using Xunit;
+using Moq;
 using BattleshipsEngine;
 
 namespace BattleshipsEngineTests
@@ -7,28 +8,38 @@ namespace BattleshipsEngineTests
     public class GameTests
     {
         [Fact]
-        public void gameInitializer()
+        public void GetBattlefieldTest()
         {
-            var game = new Game();
-            Assert.Null(game.GetBattlefield());
-            game.Initialize();
+            var battlefield = new Mock<IBattlefield>();
+            var playerScore = new Mock<IPlayerScore>();
+
+            var game = new Game(battlefield.Object, playerScore.Object);
             Assert.NotNull(game.GetBattlefield());
-            Assert.NotNull(game.GetBattlefield().GetField(0, 5));
         }
 
         [Fact]
-        public void shooting() // needs adjustments
+        public void ShouldKeepPlayingTest()
         {
-            var game = new Game();
-            game.Initialize();
+            var battlefield = new Mock<IBattlefield>();
+            var playerScore = new Mock<IPlayerScore>();
+            playerScore.Setup(x => x.HasGameEnded()).Returns(false);
 
+            var game = new Game(battlefield.Object, playerScore.Object);
+            playerScore.Verify(x => x.HasGameEnded(), Times.Never());
+            Assert.True(game.ShouldKeepPlaying());
+            playerScore.Verify(x => x.HasGameEnded(), Times.Once());
+        }
+
+        [Fact]
+        public void PrepareShotTest()
+        {
+            var battlefield = new Mock<IBattlefield>();
+            var playerScore = new Mock<IPlayerScore>();
+
+            var game = new Game(battlefield.Object, playerScore.Object);
             string coordinates = "A5";
-            IShot shot = game.PrepareShot(coordinates);
-            Assert.NotNull(shot);
 
-            bool shotResult = shot.Fire();
-            Assert.False(shotResult);
-            Assert.Null(shot.GetHitShip());
+            Assert.NotNull(game.PrepareShot(coordinates));
         }
     }
 }
