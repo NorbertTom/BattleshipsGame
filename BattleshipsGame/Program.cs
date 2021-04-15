@@ -20,7 +20,7 @@ namespace BattleshipsGame
                 if (inputValid)
                 {
                     // Translate coords string to coords, should be part of Game project / really?
-                    // Shoot (battlefield, coords) - needs Shoot class, or IShot and than GetName and GetOutcome
+                    // Shoot (coords) - needs Shoot class, or IShot and than GetName and GetOutcome
 
                 }
             }

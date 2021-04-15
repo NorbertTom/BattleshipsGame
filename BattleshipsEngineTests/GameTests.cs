@@ -20,8 +20,15 @@ namespace BattleshipsEngineTests
         public void shooting()
         {
             var game = new Game();
+            game.Initialize();
+
             string coordinates = "A5";
-            //game.shoot(coordinates); void or what?
+            IShot shot = game.PrepareShot(coordinates);
+            Assert.NotNull(shot);
+
+            bool shotResult = shot.Fire();
+            Assert.False(shotResult);
+            Assert.Null(shot.GetHitShip());
         }
     }
 }
