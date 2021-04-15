@@ -17,7 +17,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void shooting()
+        public void shooting() // needs adjustments
         {
             var game = new Game();
             game.Initialize();
