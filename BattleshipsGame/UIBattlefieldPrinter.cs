@@ -23,7 +23,7 @@ namespace BattleshipsGame
         private void printLegendRows()
         {
             Console.WriteLine("   ABCDEFGHIJ");
-            Console.WriteLine("-------------");
+            Console.WriteLine("  -----------");
         }
 
         private void printRow(int rowNr)
@@ -33,6 +33,7 @@ namespace BattleshipsGame
             {
                 printField(rowNr, i);
             }
+            Console.Write("\n");
         }
 
         private void printLegendPrefix(int rowNr)

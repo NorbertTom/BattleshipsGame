@@ -13,29 +13,38 @@ namespace BattleshipsGame
 
             UIMessages.OpeningMessage();
 
-            bool gameOn = true; // connection from game needed - if enough points was scored or not
-            while (gameOn)
+            while (game.ShouldKeepPlaying())
             {
-                //var uIBattlefieldPrinter = new UIBattlefieldPrinter(); - need Battlefield from game
+                var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.GetBattlefield());
+                uIBattlefieldPrinter.Print();
                 UIMessages.AskForCoordinatesMessage();
                 string coordsInput = Console.ReadLine();
                 bool inputValid = ValidateUserInput.coordinates(coordsInput);
                 if (inputValid)
                 {
-                    //IShot shot = game.PrepareShot
-                    //if (shot.IsShotValid()))
-                        //bool result = shot.Fire();
-                        //if (result)
-                            //IShip ship = shot.GetHitShip()
-                            //UI message -> you hit XX Ship!
-                        //else
-                            //UI message -> you missed
-                    //else
-                        //UI message -> field already shot
+                    IShot shot = game.PrepareShot(coordsInput);
+                    if (shot.IsShotValid())
+                    {
+                        bool shipHit = shot.Fire();
+                        if (shipHit)
+                        {
+                            //check if it's not sunken
+                            IShip ship = shot.GetHitShip();
+                            UIMessages.HitMessage(ship.GetName());
+                        }
+                        else
+                        {
+                            UIMessages.MissMessage();
+                        }
+                    }
+                    else
+                    {
+                        UIMessages.FieldAlreadyShotMessage();
+                    }
                 }
                 else
                 {
-                    //UI Message -> invalid input
+                    UIMessages.InvalidCoordinatesInputMessage();
                 }
             }
             Console.WriteLine("Hello World! ");

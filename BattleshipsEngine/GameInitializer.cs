@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace BattleshipsEngine
 {
@@ -9,6 +10,16 @@ namespace BattleshipsEngine
             var fields = new Field[BattlefieldSize, BattlefieldSize];
             initializeFields(fields);
             battlefield.AcquireFields(fields);
+        }
+
+        public static void SpawnShips(IBattlefield battlefield, Random random, IShip[] ships)
+        {
+            var shipSpawner = new ShipSpawner(battlefield, random);
+            for (int i = 0; i < ships.Length; i++)
+            {
+                bool result = shipSpawner.SpawnShip(ships[i]);
+                Debug.Assert(result, "Spawning Ships failed");
+            }
         }
 
         private static void initializeFields(Field[,] fields)
