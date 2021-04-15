@@ -14,10 +14,11 @@ namespace BattleshipsEngine
             return battlefield;
         }
 
-        public IShot PrepareShot(string coordinates)
+        public IShot TryShot(string coordinates)
         {
             int[] coordsInt = Helpers.TranslateCoordinates(coordinates);
-            var shot = new Shot(battlefield, playerScore, coordsInt);
+            var shotMgr = new ShotMgr(playerScore);
+            var shot = shotMgr.Shoot(battlefield, coordsInt);
             return shot;
         }
 

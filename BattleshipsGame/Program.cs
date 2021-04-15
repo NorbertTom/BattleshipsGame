@@ -36,17 +36,17 @@ namespace BattleshipsGame
                 return;
             }
 
-            IShot shot = game.PrepareShot(coordsInput);
-            if (!(shot.IsShotValid()))
+            IShot shot = game.TryShot(coordsInput);
+            if (shot==null)
             {
                 UIMessages.FieldAlreadyShotMessage();
                 return;
             }
 
-            bool isShipHit = shot.Fire();
-            if (isShipHit)
+            IShip ship = shot.GetHitShip();
+            if (ship != null)
             {
-                string message = getInfoAboutShip(shot.GetHitShip());
+                string message = getInfoAboutShip(ship);
                 UIMessages.HitMessage(message);
             }
             else
