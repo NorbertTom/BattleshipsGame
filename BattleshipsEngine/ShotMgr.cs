@@ -17,7 +17,7 @@ namespace BattleshipsEngine
             }
 
             shot.Fire();
-            IShip ship = shot.GetHitShip();
+            IShip ship = shot.HitShip;
             if (ship != null)
             {
                 HandleHit(ship);

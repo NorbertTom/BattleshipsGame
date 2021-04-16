@@ -13,14 +13,9 @@ namespace BattleshipsEngine
         {
             if (IsShotValid())
             {
-                hitShip = field.Shoot();
+                HitShip = field.Shoot();
             }
-            return hitShip != null;
-        }
-
-        public IShip GetHitShip()
-        {
-            return hitShip;
+            return HitShip != null;
         }
 
         public bool IsShotValid()
@@ -28,7 +23,7 @@ namespace BattleshipsEngine
             return !(field.IfShot());
         }
 
-        private IShip hitShip;
+        public IShip HitShip { get; private set; }
         private IField field;
     }
 }

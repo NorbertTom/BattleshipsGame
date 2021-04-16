@@ -37,7 +37,7 @@ namespace BattleshipsEngineTests
             mockRandom.Setup(x => x.Next(9 - shipsLength + 2)).Returns(shipsStartingCoordinates[1]);
 
             var ship = new Mock<IShip>();
-            ship.Setup(x => x.GetLength()).Returns(shipsLength);
+            ship.Setup(x => x.Length).Returns(shipsLength);
 
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
 
@@ -76,7 +76,7 @@ namespace BattleshipsEngineTests
             mockRandom.Setup(x => x.Next(10)).Returns(shipsStartingCoordinates[1]);
 
             var ship = new Mock<IShip>();
-            ship.Setup(x => x.GetLength()).Returns(shipsLength);
+            ship.Setup(x => x.Length).Returns(shipsLength);
 
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
 
@@ -117,7 +117,7 @@ namespace BattleshipsEngineTests
             mockRandom.Setup(x => x.Next(9 - shipsLength + 2)).Returns(shipsStartingCoordinates[1]);
 
             var ship = new Mock<IShip>();
-            ship.Setup(x => x.GetLength()).Returns(shipsLength);
+            ship.Setup(x => x.Length).Returns(shipsLength);
 
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
 
@@ -158,7 +158,7 @@ namespace BattleshipsEngineTests
             mockRandom.Setup(x => x.Next(10)).Returns(shipsStartingCoordinates[1]);
 
             var ship = new Mock<IShip>();
-            ship.Setup(x => x.GetLength()).Returns(shipsLength);
+            ship.Setup(x => x.Length).Returns(shipsLength);
 
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
             shipSpawner.SpawnShip(ship.Object);

@@ -4,8 +4,18 @@ namespace BattleshipsEngine
 {
     public abstract class Ship : IShip
     {
-        public int GetLength() { return length; }
-        public string GetName() { return name; }
+        public int Length
+        {
+            get => length;
+            protected set => length = value;
+        }
+
+        public string Name 
+        { 
+            get => name;
+            protected set => name = value;
+        }
+
         public void DealDamage() { damage++; }
         public bool IsDestroyed() { return damage == length; }
 
@@ -18,8 +28,8 @@ namespace BattleshipsEngine
     {
         public Battleship()
         {
-            length = 5;
-            name = "Battleship";
+            Length = 5;
+            Name = "Battleship";
         }
     }
 
@@ -27,8 +37,8 @@ namespace BattleshipsEngine
     {
         public Destroyer()
         {
-            length = 4;
-            name = "Destroyer";
+            Length = 4;
+            Name = "Destroyer";
         }
     }
 }

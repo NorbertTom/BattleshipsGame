@@ -18,7 +18,7 @@ namespace BattleshipsEngine
         {
             bool shipSpawned = false;
 
-            shipsLength = ship.GetLength();
+            shipsLength = ship.Length;
             isVertical = random.Next(2) == 0 ? true : false;
             int[] startingPosition = new int[2];
             int nrOfCycles = 0;

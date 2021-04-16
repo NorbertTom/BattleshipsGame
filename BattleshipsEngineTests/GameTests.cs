@@ -14,7 +14,7 @@ namespace BattleshipsEngineTests
             var playerScore = new Mock<IPlayerScore>();
 
             var game = new Game(battlefield.Object, playerScore.Object);
-            Assert.NotNull(game.GetBattlefield());
+            Assert.NotNull(game.Battlefield);
         }
 
         [Fact]

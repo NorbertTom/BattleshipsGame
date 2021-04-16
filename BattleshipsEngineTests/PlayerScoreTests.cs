@@ -10,9 +10,9 @@ namespace BattleshipsEngineTests
         public void AddPoints()
         {
             var playerScore = new PlayerScore(13);
-            Assert.Equal(0, playerScore.GetCurrentScore());
+            Assert.Equal(0, playerScore.CurrentScore);
             playerScore.AddPoint();
-            Assert.Equal(1, playerScore.GetCurrentScore());
+            Assert.Equal(1, playerScore.CurrentScore);
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace BattleshipsEngineTests
             {
                 playerScore.AddPoint();
             }
-            Assert.Equal(13, playerScore.GetCurrentScore());
+            Assert.Equal(13, playerScore.CurrentScore);
             Assert.True(playerScore.HasGameEnded());
         }
     }

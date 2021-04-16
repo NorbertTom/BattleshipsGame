@@ -14,7 +14,7 @@ namespace BattleshipsEngineTests
             var initializer = new GameInitializer(random);
             var game = initializer.createGame();
             Assert.NotNull(game);
-            Assert.NotNull(game.GetBattlefield());
+            Assert.NotNull(game.Battlefield);
         }
     }
 }

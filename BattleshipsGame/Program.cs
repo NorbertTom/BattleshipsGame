@@ -24,7 +24,7 @@ namespace BattleshipsGame
 
         static void executeGameLoop(IGame game)
         {
-            var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.GetBattlefield());
+            var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.Battlefield);
             uIBattlefieldPrinter.Print();
 
             UIMessages.AskForCoordinatesMessage();
@@ -43,7 +43,7 @@ namespace BattleshipsGame
                 return;
             }
 
-            IShip ship = shot.GetHitShip();
+            IShip ship = shot.HitShip;
             if (ship != null)
             {
                 string message = getInfoAboutShip(ship);
@@ -57,7 +57,7 @@ namespace BattleshipsGame
 
         static string getInfoAboutShip(IShip ship)
         {
-            string message = ship.GetName();
+            string message = ship.Name;
             message = ship.IsDestroyed() ? message + ". You sunk the ship." : message;
             return message;
         }

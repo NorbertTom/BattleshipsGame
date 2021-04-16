@@ -61,7 +61,7 @@ namespace BattleshipsEngineTests
             var shot = shotMgr.Shoot(battlefield.Object, coordinates);
 
             Assert.NotNull(shot);
-            Assert.Null(shot.GetHitShip());
+            Assert.Null(shot.HitShip);
             Assert.True(shot.IsShotValid());
             playerScore.Verify(x => x.AddPoint(), Times.Never());
         }
@@ -83,7 +83,7 @@ namespace BattleshipsEngineTests
             var shot = shotMgr.Shoot(battlefield.Object, coordinates);
 
             Assert.NotNull(shot);
-            Assert.NotNull(shot.GetHitShip());
+            Assert.NotNull(shot.HitShip);
             Assert.True(shot.IsShotValid());
             playerScore.Verify(x => x.AddPoint(), Times.Once());
             ship.Verify(x => x.DealDamage(), Times.Once());

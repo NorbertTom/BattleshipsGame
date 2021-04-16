@@ -5,20 +5,15 @@ namespace BattleshipsEngine
     {
         public Game(IBattlefield battlefield, IPlayerScore playerScore)
         {
-            this.battlefield = battlefield;
+            Battlefield = battlefield;
             this.playerScore = playerScore;
-        }
-
-        public IBattlefield GetBattlefield()
-        {
-            return battlefield;
         }
 
         public IShot TryShot(string coordinates)
         {
             int[] coordsInt = Helpers.TranslateCoordinates(coordinates);
             var shotMgr = new ShotMgr(playerScore);
-            var shot = shotMgr.Shoot(battlefield, coordsInt);
+            var shot = shotMgr.Shoot(Battlefield, coordsInt);
             return shot;
         }
 
@@ -27,7 +22,12 @@ namespace BattleshipsEngine
             return !(playerScore.HasGameEnded());
         }
 
-        private IBattlefield battlefield;
+        public IBattlefield Battlefield
+        {
+            get;
+            private set;
+        }
+
         private IPlayerScore playerScore;
     }
 }

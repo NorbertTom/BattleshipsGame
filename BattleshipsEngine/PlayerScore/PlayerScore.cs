@@ -11,20 +11,15 @@ namespace BattleshipsEngine
 
         public void AddPoint()
         {
-            currentScore++;
-        }
-
-        public int GetCurrentScore()
-        {
-            return currentScore;
+            CurrentScore++;
         }
 
         public bool HasGameEnded()
         {
-            return currentScore == maxPoints;
+            return CurrentScore == maxPoints;
         }
 
+        public int CurrentScore { get; private set; }
         private int maxPoints;
-        private int currentScore;
     }
 }

@@ -20,7 +20,7 @@ namespace BattleshipsEngineTests
             var newShot = new Shot(battlefield.Object, coordinates);
             Assert.False(newShot.Fire());
             Assert.False(newShot.IsShotValid());
-            Assert.Null(newShot.GetHitShip());
+            Assert.Null(newShot.HitShip);
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace BattleshipsEngineTests
             var newShot = new Shot(battlefield.Object, coordinates);
             Assert.False(newShot.Fire());
             Assert.True(newShot.IsShotValid());
-            Assert.Null(newShot.GetHitShip());
+            Assert.Null(newShot.HitShip);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace BattleshipsEngineTests
             var newShot = new Shot(battlefield.Object, coordinates);
             Assert.True(newShot.Fire());
             Assert.True(newShot.IsShotValid());
-            Assert.Equal(ship.Object, newShot.GetHitShip());
+            Assert.Equal(ship.Object, newShot.HitShip);
         }
     }
 }
