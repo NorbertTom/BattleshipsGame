@@ -6,48 +6,16 @@ namespace BattleshipsEngineTests
 {
     public class HelpersTests
     {
-        [Fact]
-        public void TranslateCoordinatesTest1()
+        [Theory]
+        [InlineData("A0", 0, 0)]
+        [InlineData("C2", 2, 2)]
+        [InlineData("F7", 5, 7)]
+        [InlineData("J1", 9, 1)]
+        [InlineData("J9", 9, 9)]
+        public void TranslateCoordinatesTest(string coordString, int expectedX, int expectedY)
         {
-            string coordinatesString = "A0";
-            int[] expectedResult = { 0, 0 };
-            int[] actualResult = Helpers.TranslateCoordinates(coordinatesString);
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Fact]
-        public void TranslateCoordinatesTest2()
-        {
-            string coordinatesString = "C2";
-            int[] expectedResult = { 2, 2 };
-            int[] actualResult = Helpers.TranslateCoordinates(coordinatesString);
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Fact]
-        public void TranslateCoordinatesTest3()
-        {
-            string coordinatesString = "F7";
-            int[] expectedResult = { 5, 7 };
-            int[] actualResult = Helpers.TranslateCoordinates(coordinatesString);
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Fact]
-        public void TranslateCoordinatesTest4()
-        {
-            string coordinatesString = "J1";
-            int[] expectedResult = { 9, 1 };
-            int[] actualResult = Helpers.TranslateCoordinates(coordinatesString);
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Fact]
-        public void TranslateCoordinatesTest5()
-        {
-            string coordinatesString = "J9";
-            int[] expectedResult = { 9, 9 };
-            int[] actualResult = Helpers.TranslateCoordinates(coordinatesString);
+            int[] expectedResult = { expectedX, expectedY };
+            int[] actualResult = Helpers.TranslateCoordinates(coordString);
             Assert.Equal(expectedResult, actualResult);
         }
     }

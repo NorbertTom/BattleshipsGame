@@ -17,19 +17,19 @@ namespace BattleshipsGame
 
             while (game.ShouldKeepPlaying())
             {
-                executeGameLoop(game);
+                ExecuteGameLoop(game);
             }
             UIMessages.GameEndMessage();
         }
 
-        static void executeGameLoop(IGame game)
+        static void ExecuteGameLoop(IGame game)
         {
             var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.Battlefield);
             uIBattlefieldPrinter.Print();
 
             UIMessages.AskForCoordinatesMessage();
             string coordsInput = Console.ReadLine();
-            bool inputValid = ValidateUserInput.coordinates(coordsInput);
+            bool inputValid = ValidateUserInput.Coordinates(coordsInput);
             if (!inputValid)
             {
                 UIMessages.InvalidCoordinatesInputMessage();
@@ -46,7 +46,7 @@ namespace BattleshipsGame
             IShip ship = shot.HitShip;
             if (ship != null)
             {
-                string message = getInfoAboutShip(ship);
+                string message = GetInfoAboutShip(ship);
                 UIMessages.HitMessage(message);
             }
             else
@@ -55,7 +55,7 @@ namespace BattleshipsGame
             }
         }
 
-        static string getInfoAboutShip(IShip ship)
+        static string GetInfoAboutShip(IShip ship)
         {
             string message = ship.Name;
             message = ship.IsDestroyed() ? message + ". You sunk the ship." : message;

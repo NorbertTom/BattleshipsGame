@@ -13,35 +13,35 @@ namespace BattleshipsGame
 
         public void Print()
         {
-            printLegendRows();
+            PrintLegendRows();
             for (int i=0;i<BattlefieldSize;i++)
             {
-                printRow(i);
+                PrintRow(i);
             }
         }
 
-        private void printLegendRows()
+        private void PrintLegendRows()
         {
             Console.WriteLine("\n   ABCDEFGHIJ\n" +
                                  "  -----------");
         }
 
-        private void printRow(int rowNr)
+        private void PrintRow(int rowNr)
         {
-            printLegendPrefix(rowNr);
+            PrintLegendPrefix(rowNr);
             for (int i=0;i<BattlefieldSize;i++)
             {
-                printField(rowNr, i);
+                PrintField(rowNr, i);
             }
             Console.Write("\n");
         }
 
-        private void printLegendPrefix(int rowNr)
+        private void PrintLegendPrefix(int rowNr)
         {
             Console.Write(rowNr + " |");
         }
 
-        private void printField(int rowNr, int columnNr)
+        private void PrintField(int rowNr, int columnNr)
         {
             IField field = battlefield.GetField(columnNr, rowNr);
             bool isFieldShot = field.IfShot();

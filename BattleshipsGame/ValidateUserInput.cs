@@ -4,7 +4,7 @@ namespace BattleshipsGame
 {
     static class ValidateUserInput
     {
-        public static bool coordinates(string coordinates)
+        public static bool Coordinates(string coordinates)
         {
             bool isInputValid = false;
             if (coordinates.Length==2 

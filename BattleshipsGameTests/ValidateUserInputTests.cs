@@ -6,21 +6,26 @@ namespace BattleshipsGameTests
 {
     public class ValidateUserInputTests
     {
-        [Fact]
-        public void validateCoordinates()
+        [Theory]
+        [InlineData("A4")]
+        [InlineData("F0")]
+        [InlineData("J9")]
+        [InlineData("B1")]
+        [InlineData("D7")]
+        public void ValidateCoordinates_Valid(string validInput)
         {
-            string[] validInputs = { "A4", "F0", "J9", "B1", "D7" };
-            string[] invalidInputs = { "K4", "a0", "X9", "B10", "8X" };
+            Assert.True(ValidateUserInput.Coordinates(validInput));
+        }
 
-            foreach(string validInput in validInputs)
-            {
-                Assert.True(ValidateUserInput.coordinates(validInput));
-            }
-
-            foreach(string invalidInput in invalidInputs)
-            {
-                Assert.False(ValidateUserInput.coordinates(invalidInput));
-            }
+        [Theory]
+        [InlineData("K4")]
+        [InlineData("a0")]
+        [InlineData("X9")]
+        [InlineData("B10")]
+        [InlineData("8X")]
+        public void ValidateCoordinates_invalid(string invalidInput)
+        {
+            Assert.False(ValidateUserInput.Coordinates(invalidInput));
         }
     }
 }

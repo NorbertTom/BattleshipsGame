@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class ShipSpawnerTests
     {
         [Fact]
-        public void trySpawningOneVerticalShip()
+        public void TrySpawningOneVerticalShip()
         {
             int shipsLength = 5;
             int[] shipsStartingCoordinates = { 0, 4 };
@@ -50,7 +50,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void trySpawningOneHorizontalShip()
+        public void TrySpawningOneHorizontalShip()
         {
             int shipsLength = 4;
             int[] shipsStartingCoordinates = { 0, 9 };
@@ -88,7 +88,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void trySpawningSameShipTwice()
+        public void TrySpawningSameShipTwice()
         {
             int shipsLength = 5;
             int[] shipsStartingCoordinates = { 4, 1 };
@@ -132,7 +132,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void trySpawningCollidingShips()
+        public void TrySpawningCollidingShips()
         {
             int shipsLength = 4;
             int[] shipsStartingCoordinates = { 0, 9 };
