@@ -12,7 +12,7 @@ namespace BattleshipsEngineTests
         {
             var random = new Random();
             var initializer = new GameInitializer(random);
-            var game = initializer.createGame();
+            var game = initializer.CreateGame();
             Assert.NotNull(game);
             Assert.NotNull(game.Battlefield);
         }

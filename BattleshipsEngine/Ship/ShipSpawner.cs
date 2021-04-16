@@ -22,43 +22,44 @@ namespace BattleshipsEngine
             isVertical = random.Next(2) == 0 ? true : false;
             int[] startingPosition = new int[2];
             int nrOfCycles = 0;
+            const int cyclesLimit = 50;
 
             while (!shipSpawned)
             {
-                startingPosition = getRandomizedStartingPosition();
-                shipSpawned = !isShipCollidingWithAnother(startingPosition);
+                startingPosition = GetRandomizedStartingPosition();
+                shipSpawned = !IsShipCollidingWithAnother(startingPosition);
                 nrOfCycles++;
-                if (nrOfCycles > 5)
+                if (nrOfCycles > cyclesLimit)
                     return false;
             }
 
-            placeShipOnBattlefield(startingPosition, ship);
+            PlaceShipOnBattlefield(startingPosition, ship);
 
             return shipSpawned;
         }
 
-        private int[] getRandomizedStartingPosition()
+        private int[] GetRandomizedStartingPosition()
         {
             int column, row;
 
             if (isVertical)
             {
-                column = random.Next(BattlefieldSize+1);
-                row = random.Next(BattlefieldSize - shipsLength + 2);
+                column = random.Next(BattlefieldHighestIndex+1);
+                row = random.Next(BattlefieldHighestIndex - shipsLength + 2);
             }
             else 
             {
-                column = random.Next(BattlefieldSize - shipsLength + 2);
-                row = random.Next(BattlefieldSize+1);
+                column = random.Next(BattlefieldHighestIndex - shipsLength + 2);
+                row = random.Next(BattlefieldHighestIndex+1);
             }
 
             int[] result = { column, row };
             return result;
         }
 
-        private bool isShipCollidingWithAnother(int[] startingPosition)
+        private bool IsShipCollidingWithAnother(int[] startingPosition)
         {
-            List<int[]> allShipsFieldsCoords = getAllShipsFieldsCoords(startingPosition);
+            List<int[]> allShipsFieldsCoords = GetAllShipsFieldsCoords(startingPosition);
 
             foreach(int[] currentCoords in allShipsFieldsCoords)
             {
@@ -73,9 +74,9 @@ namespace BattleshipsEngine
             return false;
         }
 
-        private void placeShipOnBattlefield(int[] startingPosition, IShip ship)
+        private void PlaceShipOnBattlefield(int[] startingPosition, IShip ship)
         {
-            var allShipsFieldsCoords = getAllShipsFieldsCoords(startingPosition);
+            var allShipsFieldsCoords = GetAllShipsFieldsCoords(startingPosition);
             foreach (int[] currentCoordinates in allShipsFieldsCoords)
             {
                 battlefield.GetField(currentCoordinates[0], currentCoordinates[1]).PlaceShip(ship);
@@ -83,7 +84,7 @@ namespace BattleshipsEngine
             }
         }
 
-        private List<int[]> getAllShipsFieldsCoords(int[] startingPosition)
+        private List<int[]> GetAllShipsFieldsCoords(int[] startingPosition)
         {
             List<int[]> allShipsFieldsCoords = new List<int[]>();
             int changingCoordinate = isVertical ? 1 : 0;
@@ -93,12 +94,12 @@ namespace BattleshipsEngine
                 int[] currentPosition = startingPosition.Clone() as int[];
                 currentPosition[changingCoordinate] = startingPosition[changingCoordinate] + i;
 
-                if (currentPosition[0] > BattlefieldSize || currentPosition[1] > BattlefieldSize)
+                if (currentPosition[0] > BattlefieldHighestIndex || currentPosition[1] > BattlefieldHighestIndex)
                 {
                     throw new Exception("Ship exceeds battlefield size");
                 }
 
-                allShipsFieldsCoords.Add(currentPosition) ;
+                allShipsFieldsCoords.Add(currentPosition);
             }
             return allShipsFieldsCoords;
         }
@@ -108,6 +109,6 @@ namespace BattleshipsEngine
         private List<int[]> indiciesOccupiedWithShips;
         private bool isVertical;
         private int shipsLength;
-        private const int BattlefieldSize = 9;
+        private const int BattlefieldHighestIndex = 9;
     }
 }

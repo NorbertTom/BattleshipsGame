@@ -10,7 +10,7 @@ namespace BattleshipsGame
         {
             Random random = new Random();
             var gameInitializer = new GameInitializer(random);
-            var game = gameInitializer.createGame();
+            var game = gameInitializer.CreateGame();
 
             UIMessages.OpeningMessage();
             Console.ReadLine();
@@ -43,10 +43,9 @@ namespace BattleshipsGame
                 return;
             }
 
-            IShip ship = shot.HitShip;
-            if (ship != null)
+            if (shot.HitShip != null)
             {
-                string message = GetInfoAboutShip(ship);
+                string message = GetInfoAboutShip(shot.HitShip);
                 UIMessages.HitMessage(message);
             }
             else

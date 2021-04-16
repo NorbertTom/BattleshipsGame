@@ -10,7 +10,7 @@ namespace BattleshipsEngine
             this.random = random;
         }
 
-        public IGame createGame()
+        public IGame CreateGame()
         {
             const int MaxScoreInGame = 13;
             var playerScore = new PlayerScore(MaxScoreInGame);
@@ -26,21 +26,21 @@ namespace BattleshipsEngine
         private void Initialize(IBattlefield battlefield)
         {
             var fields = new Field[BattlefieldSize, BattlefieldSize];
-            initializeFields(fields);
+            InitializeFields(fields);
             battlefield.AcquireFields(fields);
         }
 
         private void SpawnShips(IBattlefield battlefield, Random random, IShip[] ships)
         {
             var shipSpawner = new ShipSpawner(battlefield, random);
-            for (int i = 0; i < ships.Length; i++)
+            foreach (IShip ship in ships)
             {
-                bool result = shipSpawner.SpawnShip(ships[i]);
+                bool result = shipSpawner.SpawnShip(ship);
                 Debug.Assert(result, "Spawning Ships failed");
             }
         }
 
-        private void initializeFields(Field[,] fields)
+        private void InitializeFields(Field[,] fields)
         {
             for (int i=0; i < BattlefieldSize; i++)
             {
