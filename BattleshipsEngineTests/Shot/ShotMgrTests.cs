@@ -17,10 +17,9 @@ namespace BattleshipsEngineTests
             battlefield.Setup(x => x.GetField(coordinates[0], coordinates[1])).Returns(field.Object);
             field.Setup(x => x.IfShot()).Returns(true);
 
-            var shotMgr = new ShotMgr(playerScore.Object);
-            var shot = shotMgr.Shoot(battlefield.Object, coordinates);
+            var shotMgr = new ShotMgr(playerScore.Object, battlefield.Object, coordinates);
 
-            Assert.Null(shot);
+            Assert.False(shotMgr.WillShotBeValid());
             playerScore.Verify(x => x.AddPoint(), Times.Never());
         }
 
@@ -37,10 +36,9 @@ namespace BattleshipsEngineTests
             field.Setup(x => x.IfShot()).Returns(true);
             field.Setup(x => x.Shoot()).Returns(ship.Object);
 
-            var shotMgr = new ShotMgr(playerScore.Object);
-            var shot = shotMgr.Shoot(battlefield.Object, coordinates);
+            var shotMgr = new ShotMgr(playerScore.Object, battlefield.Object, coordinates);
 
-            Assert.Null(shot);
+            Assert.False(shotMgr.WillShotBeValid());
             playerScore.Verify(x => x.AddPoint(), Times.Never());
             ship.Verify(x => x.DealDamage(), Times.Never());
         }
@@ -57,8 +55,8 @@ namespace BattleshipsEngineTests
             field.Setup(x => x.IfShot()).Returns(false);
             field.Setup(x => x.Shoot()).Returns((IShip)null);
 
-            var shotMgr = new ShotMgr(playerScore.Object);
-            var shot = shotMgr.Shoot(battlefield.Object, coordinates);
+            var shotMgr = new ShotMgr(playerScore.Object, battlefield.Object, coordinates);
+            var shot = shotMgr.Shoot();
 
             Assert.NotNull(shot);
             Assert.Null(shot.HitShip);
@@ -79,8 +77,8 @@ namespace BattleshipsEngineTests
             field.Setup(x => x.IfShot()).Returns(false);
             field.Setup(x => x.Shoot()).Returns(ship.Object);
 
-            var shotMgr = new ShotMgr(playerScore.Object);
-            var shot = shotMgr.Shoot(battlefield.Object, coordinates);
+            var shotMgr = new ShotMgr(playerScore.Object, battlefield.Object, coordinates);
+            var shot = shotMgr.Shoot();
 
             Assert.NotNull(shot);
             Assert.NotNull(shot.HitShip);

@@ -9,12 +9,12 @@ namespace BattleshipsEngine
             this.playerScore = playerScore;
         }
 
-        public IShot TryShot(string coordinates)
+        public IShotMgr PrepareShot(string coordinates)
         {
             int[] coordsInt = Helpers.TranslateCoordinates(coordinates);
-            var shotMgr = new ShotMgr(playerScore);
-            var shot = shotMgr.Shoot(Battlefield, coordsInt);
-            return shot;
+            var shotMgr = new ShotMgr(playerScore, Battlefield, coordsInt);
+            var result = shotMgr.WillShotBeValid() ? shotMgr : null;
+            return result;
         }
 
         public bool ShouldKeepPlaying()

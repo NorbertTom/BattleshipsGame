@@ -37,13 +37,14 @@ namespace BattleshipsGame
                 return;
             }
 
-            IShot shot = game.TryShot(coordsInput);
-            if (shot==null)
+            var shotMgr = game.PrepareShot(coordsInput);
+            if (shotMgr==null)
             {
                 UIMessages.FieldAlreadyShotMessage();
                 return;
             }
 
+            var shot = shotMgr.Shoot();
             if (shot.HitShip != null)
             {
                 string message = GetInfoAboutShip(shot.HitShip);

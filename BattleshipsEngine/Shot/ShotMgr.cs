@@ -1,35 +1,36 @@
 ﻿
 namespace BattleshipsEngine
 {
-    class ShotMgr
+    class ShotMgr : IShotMgr
     {
-        public ShotMgr(IPlayerScore playerScore)
+        public ShotMgr(IPlayerScore playerScore, IBattlefield battlefield, int[] coordinates)
         {
             this.playerScore = playerScore;
+            shot = new Shot(battlefield, coordinates);
         }
 
-        public IShot Shoot(IBattlefield battlefield, int[] coordinates)
+        public bool WillShotBeValid()
         {
-            var shot = new Shot(battlefield, coordinates);
-            if (!shot.IsShotValid())
-            {
-                return null;
-            }
+            return shot.IsShotValid();
+        }
 
+        public IShot Shoot()
+        {
             shot.Fire();
             if (shot.HitShip != null)
             {
-                HandleHit(shot.HitShip);
+                HandleHit();
             }
             return shot;
         }
 
-        private void HandleHit(IShip ship)
+        private void HandleHit()
         {
-            ship.DealDamage();
+            shot.HitShip.DealDamage();
             playerScore.AddPoint();
         }
 
         private IPlayerScore playerScore;
+        private Shot shot;
     }
 }

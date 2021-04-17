@@ -15,7 +15,6 @@ namespace BattleshipsEngine
         private static int translateCharCapitalLetterToInt(char capitalLetter)
         {
             const int CapitalAInAscii = 65;
-            int temp = capitalLetter;
             return capitalLetter - CapitalAInAscii;
         }
     }

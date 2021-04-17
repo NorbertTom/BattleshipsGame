@@ -3,7 +3,7 @@
     public interface IGame
     {
         public IBattlefield Battlefield { get; }
-        public IShot TryShot(string coordinates);
+        public IShotMgr PrepareShot(string coordinates);
         public bool ShouldKeepPlaying();
     }
 }
