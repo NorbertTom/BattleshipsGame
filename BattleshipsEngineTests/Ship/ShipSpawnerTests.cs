@@ -12,25 +12,20 @@ namespace BattleshipsEngineTests
         {
             int shipsLength = 5;
             int[] shipsStartingCoordinates = { 0, 4 };
-            
-            var field0 = new Mock<IField>();
-            var field1 = new Mock<IField>();
-            var field2 = new Mock<IField>();
-            var field3 = new Mock<IField>();
-            var field4 = new Mock<IField>();
-            
+            Mock<IField>[] fields = new Mock<IField>[5];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                fields[i] = new Mock<IField>();
+            }
+
             var battlefield = new Mock<IBattlefield>();
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]))
-                                            .Returns(field0.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]+1))
-                                            .Returns(field1.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]+2))
-                                            .Returns(field2.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]+3))
-                                            .Returns(field3.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]+4))
-                                            .Returns(field4.Object);
-            
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1] + i))
+                                              .Returns(fields[i].Object);
+            }
+
             var mockRandom = new Mock<Random>();
             mockRandom.Setup(x => x.Next(2)).Returns(0);
             mockRandom.Setup(x => x.Next(10)).Returns(shipsStartingCoordinates[0]);
@@ -42,11 +37,10 @@ namespace BattleshipsEngineTests
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
 
             Assert.True(shipSpawner.SpawnShip(ship.Object));
-            field0.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field1.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field2.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field3.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field4.Verify(x => x.PlaceShip(ship.Object), Times.Once());
+            foreach (var field in fields)
+            {
+                field.Verify(x => x.PlaceShip(ship.Object), Times.Once());
+            }
         }
 
         [Fact]
@@ -55,20 +49,18 @@ namespace BattleshipsEngineTests
             int shipsLength = 4;
             int[] shipsStartingCoordinates = { 0, 9 };
 
-            var field0 = new Mock<IField>();
-            var field1 = new Mock<IField>();
-            var field2 = new Mock<IField>();
-            var field3 = new Mock<IField>();
+            Mock<IField>[] fields = new Mock<IField>[4];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                fields[i] = new Mock<IField>();
+            }
 
             var battlefield = new Mock<IBattlefield>();
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]))
-                                            .Returns(field0.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0]+1, shipsStartingCoordinates[1]))
-                                            .Returns(field1.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0]+2, shipsStartingCoordinates[1]))
-                                            .Returns(field2.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0]+3, shipsStartingCoordinates[1]))
-                                            .Returns(field3.Object);
+            for (int i = 0; i < fields.Length; i++)
+            {
+                battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0] + i, shipsStartingCoordinates[1]))
+                                                .Returns(fields[i].Object);
+            }
 
             var mockRandom = new Mock<Random>();
             mockRandom.Setup(x => x.Next(2)).Returns(1);
@@ -81,10 +73,10 @@ namespace BattleshipsEngineTests
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
 
             Assert.True(shipSpawner.SpawnShip(ship.Object));
-            field0.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field1.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field2.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field3.Verify(x => x.PlaceShip(ship.Object), Times.Once());
+            foreach (var field in fields)
+            {
+                field.Verify(x => x.PlaceShip(ship.Object), Times.Once());
+            }
         }
 
         [Fact]
@@ -93,23 +85,18 @@ namespace BattleshipsEngineTests
             int shipsLength = 5;
             int[] shipsStartingCoordinates = { 4, 1 };
 
-            var field0 = new Mock<IField>();
-            var field1 = new Mock<IField>();
-            var field2 = new Mock<IField>();
-            var field3 = new Mock<IField>();
-            var field4 = new Mock<IField>();
+            Mock<IField>[] fields = new Mock<IField>[5];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                fields[i] = new Mock<IField>();
+            }
 
             var battlefield = new Mock<IBattlefield>();
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]))
-                                            .Returns(field0.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1] + 1))
-                                            .Returns(field1.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1] + 2))
-                                            .Returns(field2.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1] + 3))
-                                            .Returns(field3.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1] + 4))
-                                            .Returns(field4.Object);
+            for (int i = 0; i < fields.Length; i++)
+            {
+                battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1] + i))
+                                                .Returns(fields[i].Object);
+            }
 
             var mockRandom = new Mock<Random>();
             mockRandom.Setup(x => x.Next(2)).Returns(0);
@@ -122,12 +109,10 @@ namespace BattleshipsEngineTests
             var shipSpawner = new ShipSpawner(battlefield.Object, mockRandom.Object);
 
             Assert.True(shipSpawner.SpawnShip(ship.Object));
-            field0.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field1.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field2.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field3.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-            field4.Verify(x => x.PlaceShip(ship.Object), Times.Once());
-
+            foreach (var field in fields)
+            {
+                field.Verify(x => x.PlaceShip(ship.Object), Times.Once());
+            }
             Assert.False(shipSpawner.SpawnShip(ship.Object));
         }
 
@@ -137,21 +122,19 @@ namespace BattleshipsEngineTests
             int shipsLength = 4;
             int[] shipsStartingCoordinates = { 0, 9 };
 
-            var field0 = new Mock<IField>();
-            var field1 = new Mock<IField>();
-            var field2 = new Mock<IField>();
-            var field3 = new Mock<IField>();
+            Mock<IField>[] fields = new Mock<IField>[4];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                fields[i] = new Mock<IField>();
+            }
 
             var battlefield = new Mock<IBattlefield>();
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0], shipsStartingCoordinates[1]))
-                                            .Returns(field0.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0] + 1, shipsStartingCoordinates[1]))
-                                            .Returns(field1.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0] + 2, shipsStartingCoordinates[1]))
-                                            .Returns(field2.Object);
-            battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0] + 3, shipsStartingCoordinates[1]))
-                                            .Returns(field3.Object);
-
+            for (int i=0;i<fields.Length;i++)
+            {
+                battlefield.Setup(x => x.GetField(shipsStartingCoordinates[0] + i, shipsStartingCoordinates[1]))
+                                          .Returns(fields[i].Object);
+            }
+ 
             var mockRandom = new Mock<Random>();
             mockRandom.Setup(x => x.Next(2)).Returns(1);
             mockRandom.Setup(x => x.Next(9 - shipsLength + 2)).Returns(shipsStartingCoordinates[0]);
