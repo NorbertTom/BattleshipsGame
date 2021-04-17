@@ -11,61 +11,74 @@ namespace BattleshipsEngine
         {
             this.battlefield = battlefield;
             this.random = random;
-            indiciesOccupiedWithShips = new List<int[]>();
+            fieldsOccupiedBySpawnedShips = new List<int[]>();
+            startingPosition = new int[2];
         }
 
         public bool SpawnShip(IShip ship)
         {
-            bool shipSpawned = false;
+            bool shipSpawnSucceeded = false;
 
             shipsLength = ship.Length;
             isVertical = random.Next(2) == 0 ? true : false;
-            int[] startingPosition = new int[2];
             int nrOfCycles = 0;
             const int cyclesLimit = 50;
 
-            while (!shipSpawned)
+            while (!shipSpawnSucceeded)
             {
-                startingPosition = GetRandomizedStartingPosition();
-                shipSpawned = !IsShipCollidingWithAnother(startingPosition);
+                RandomizeStartingPosition();
+                SetAllFieldsOccupiedByNewShip();
+                shipSpawnSucceeded = !IsShipCollidingWithAnother();
                 nrOfCycles++;
                 if (nrOfCycles > cyclesLimit)
                     return false;
             }
 
-            PlaceShipOnBattlefield(startingPosition, ship);
+            PlaceShipOnBattlefield(ship);
 
-            return shipSpawned;
+            return shipSpawnSucceeded;
         }
 
-        private int[] GetRandomizedStartingPosition()
+        private void RandomizeStartingPosition()
         {
-            int column, row;
-
             if (isVertical)
             {
-                column = random.Next(BattlefieldHighestIndex+1);
-                row = random.Next(BattlefieldHighestIndex - shipsLength + 2);
+                startingPosition[0] = random.Next(BattlefieldHighestIndex + 1);
+                startingPosition[1] = random.Next(BattlefieldHighestIndex - shipsLength + 2);
             }
-            else 
+            else
             {
-                column = random.Next(BattlefieldHighestIndex - shipsLength + 2);
-                row = random.Next(BattlefieldHighestIndex+1);
+                startingPosition[0] = random.Next(BattlefieldHighestIndex - shipsLength + 2);
+                startingPosition[1] = random.Next(BattlefieldHighestIndex + 1);
             }
-
-            int[] result = { column, row };
-            return result;
         }
 
-        private bool IsShipCollidingWithAnother(int[] startingPosition)
+        private void SetAllFieldsOccupiedByNewShip()
         {
-            List<int[]> allShipsFieldsCoords = GetAllShipsFieldsCoords(startingPosition);
+            fieldsOccupiedByNewShip = new List<int[]>();
+            int shipsDirection = isVertical ? 1 : 0;
 
-            foreach(int[] currentCoords in allShipsFieldsCoords)
+            for (int i = 0; i < shipsLength; i++)
             {
-                foreach(int[] occupiedCoords in indiciesOccupiedWithShips)
+                int[] currentPosition = startingPosition.Clone() as int[];
+                currentPosition[shipsDirection] = startingPosition[shipsDirection] + i;
+
+                if (currentPosition[0] > BattlefieldHighestIndex || currentPosition[1] > BattlefieldHighestIndex)
                 {
-                    if (currentCoords[0] == occupiedCoords[0] && currentCoords[1] == occupiedCoords[1])
+                    throw new Exception("Ship exceeds battlefield size");
+                }
+
+                fieldsOccupiedByNewShip.Add(currentPosition);
+            }
+        }
+
+        private bool IsShipCollidingWithAnother()
+        {
+            foreach(int[] newShipsCoords in fieldsOccupiedByNewShip)
+            {
+                foreach(int[] occupiedCoords in fieldsOccupiedBySpawnedShips)
+                {
+                    if (newShipsCoords[0] == occupiedCoords[0] && newShipsCoords[1] == occupiedCoords[1])
                     {
                         return true;
                     }
@@ -74,41 +87,22 @@ namespace BattleshipsEngine
             return false;
         }
 
-        private void PlaceShipOnBattlefield(int[] startingPosition, IShip ship)
+        private void PlaceShipOnBattlefield(IShip ship)
         {
-            var allShipsFieldsCoords = GetAllShipsFieldsCoords(startingPosition);
-            foreach (int[] currentCoordinates in allShipsFieldsCoords)
+            foreach (int[] newShipsCoords in fieldsOccupiedByNewShip)
             {
-                battlefield.GetField(currentCoordinates[0], currentCoordinates[1]).PlaceShip(ship);
-                indiciesOccupiedWithShips.Add(currentCoordinates);
+                battlefield.GetField(newShipsCoords[0], newShipsCoords[1]).PlaceShip(ship);
+                fieldsOccupiedBySpawnedShips.Add(newShipsCoords);
             }
-        }
-
-        private List<int[]> GetAllShipsFieldsCoords(int[] startingPosition)
-        {
-            List<int[]> allShipsFieldsCoords = new List<int[]>();
-            int changingCoordinate = isVertical ? 1 : 0;
-            
-            for (int i = 0; i < shipsLength; i++)
-            {
-                int[] currentPosition = startingPosition.Clone() as int[];
-                currentPosition[changingCoordinate] = startingPosition[changingCoordinate] + i;
-
-                if (currentPosition[0] > BattlefieldHighestIndex || currentPosition[1] > BattlefieldHighestIndex)
-                {
-                    throw new Exception("Ship exceeds battlefield size");
-                }
-
-                allShipsFieldsCoords.Add(currentPosition);
-            }
-            return allShipsFieldsCoords;
         }
 
         private IBattlefield battlefield;
         private Random random;
-        private List<int[]> indiciesOccupiedWithShips;
+        private List<int[]> fieldsOccupiedBySpawnedShips;
+        private List<int[]> fieldsOccupiedByNewShip;
         private bool isVertical;
         private int shipsLength;
+        private int[] startingPosition;
         private const int BattlefieldHighestIndex = 9;
     }
 }

@@ -30,16 +30,40 @@ namespace BattleshipsEngineTests
             playerScore.Verify(x => x.HasGameEnded(), Times.Once());
         }
 
-        [Fact]
-        public void PrepareShotTest()
-        {/* needs rework
+        [Theory]
+        [InlineData("A0", 0, 0)]
+        [InlineData("C2", 2, 2)]
+        [InlineData("F1", 5, 1)]
+        [InlineData("J9", 9, 9)]
+        public void IfFieldIsAlreadyShot_PreparingShotReturnsNull(string coordinates, int coordX, int coordY)
+        {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();
+            var field = new Mock<IField>();
+            battlefield.Setup(x => x.GetField(coordX, coordY)).Returns(field.Object);
+            field.Setup(x => x.IfShot()).Returns(true);
 
             var game = new Game(battlefield.Object, playerScore.Object);
-            string coordinates = "A5";
 
-            Assert.NotNull(game.TryShot(coordinates));*/
+            Assert.Null(game.PrepareShot(coordinates));
+        }
+
+        [Theory]
+        [InlineData("F5", 5, 5)]
+        [InlineData("B9", 1, 9)]
+        [InlineData("D0", 3, 0)]
+        [InlineData("I7", 8, 7)]
+        public void IfFieldIsNotAlreadyShot_PreparingShotReturnsNotNull(string coordinates, int coordX, int coordY)
+        {
+            var battlefield = new Mock<IBattlefield>();
+            var playerScore = new Mock<IPlayerScore>();
+            var field = new Mock<IField>();
+            battlefield.Setup(x => x.GetField(coordX, coordY)).Returns(field.Object);
+            field.Setup(x => x.IfShot()).Returns(false);
+
+            var game = new Game(battlefield.Object, playerScore.Object);
+            
+            Assert.NotNull(game.PrepareShot(coordinates));
         }
     }
 }
