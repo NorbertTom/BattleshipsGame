@@ -12,7 +12,7 @@ namespace BattleshipsEngineTests
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];
             Assert.True(battlefield.AcquireFields(fields));
-            }
+        }
 
         [Fact]
         public void AcquireInvalidFieldsTest()
