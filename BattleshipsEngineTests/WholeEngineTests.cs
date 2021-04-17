@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xunit;
 using Moq;
 using BattleshipsEngine;
@@ -24,14 +25,15 @@ namespace BattleshipsEngineTests
 
             var gameInitializer = new GameInitializer(random.Object);
             var game = gameInitializer.CreateGame();
-            string[] listOfShots = {"B5", "B6", "B7", "B8", "B9",
+            string[] listOfHitShots = {"B5", "B6", "B7", "B8", "B9",
                                     "E2", "F2", "G2", "H2",
                                     "I0", "I1", "I2", "I3"};
-            foreach (var shotCoordinates in listOfShots)
+            foreach (var shotCoordinates in listOfHitShots)
             {
                 Assert.True(game.ShouldKeepPlaying());
                 var shotMgr = game.PrepareShot(shotCoordinates);
-                shotMgr.Shoot();
+                var shot = shotMgr.Shoot();
+                Assert.NotNull(shot.HitShip);
             }
             Assert.False(game.ShouldKeepPlaying());
         }

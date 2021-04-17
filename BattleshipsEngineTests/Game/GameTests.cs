@@ -35,7 +35,7 @@ namespace BattleshipsEngineTests
         [InlineData("C2", 2, 2)]
         [InlineData("F1", 5, 1)]
         [InlineData("J9", 9, 9)]
-        public void IfFieldIsAlreadyShot_PreparingShotReturnsNull(string coordinates, int coordX, int coordY)
+        public void IfFieldWassAlreadyShot_PreparingShotReturnsNull(string coordinates, int coordX, int coordY)
         {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();
@@ -53,7 +53,7 @@ namespace BattleshipsEngineTests
         [InlineData("B9", 1, 9)]
         [InlineData("D0", 3, 0)]
         [InlineData("I7", 8, 7)]
-        public void IfFieldIsNotAlreadyShot_PreparingShotReturnsNotNull(string coordinates, int coordX, int coordY)
+        public void IfFieldWasNotAlreadyShot_PreparingShotReturnsNotNull(string coordinates, int coordX, int coordY)
         {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();
