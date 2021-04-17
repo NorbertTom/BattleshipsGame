@@ -8,12 +8,22 @@ namespace BattleshipsGame
         {
             bool isInputValid = false;
             if (coordinates.Length==2 
-                && !(coordinates[0] < 'A' || coordinates[0] > 'J')
-                && !(coordinates[1] < '0' || coordinates[1] > '9'))
+                && IsValidLetter(coordinates[0])
+                && IsValidNumber(coordinates[1]))
             {
                 isInputValid = true;
             }
             return isInputValid;
+        }
+
+        private static bool IsValidLetter(char character)
+        {
+            return (character >= 'A' && character <= 'J');
+        }
+
+        private static bool IsValidNumber(char character)
+        {
+            return (character >= '0' && character <= '9');
         }
     }
 }

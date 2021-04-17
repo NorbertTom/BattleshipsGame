@@ -22,14 +22,14 @@ namespace BattleshipsGame
 
         private void PrintLegendRows()
         {
-            Console.WriteLine("\n   ABCDEFGHIJ\n" +
+            Console.WriteLine("\n   ABCDEFGHIJ | ? - unknown, X - miss, H - hit\n" +
                                  "  -----------");
         }
 
         private void PrintRow(int rowNr)
         {
             PrintLegendPrefix(rowNr);
-            for (int i=0;i<BattlefieldSize;i++)
+            for (int i=0; i<BattlefieldSize; i++)
             {
                 PrintField(rowNr, i);
             }

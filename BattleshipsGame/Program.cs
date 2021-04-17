@@ -15,17 +15,18 @@ namespace BattleshipsGame
             UIMessages.OpeningMessage();
             Console.ReadLine();
 
+            var battlefieldPrinter = new UIBattlefieldPrinter(game.Battlefield);
+
             while (game.ShouldKeepPlaying())
             {
-                ExecuteGameLoop(game);
+                ExecuteGameLoop(game, battlefieldPrinter);
             }
             UIMessages.GameEndMessage();
         }
 
-        static void ExecuteGameLoop(IGame game)
+        static void ExecuteGameLoop(IGame game, UIBattlefieldPrinter battlefieldPrinter)
         {
-            var uIBattlefieldPrinter = new UIBattlefieldPrinter(game.Battlefield);
-            uIBattlefieldPrinter.Print();
+            battlefieldPrinter.Print();
 
             UIMessages.AskForCoordinatesMessage();
             string coordsInput = Console.ReadLine();

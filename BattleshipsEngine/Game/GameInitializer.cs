@@ -17,7 +17,7 @@ namespace BattleshipsEngine
             var battlefield = new Battlefield();
             Initialize(battlefield);
             Ship[] ships = { new Battleship(), new Destroyer(), new Destroyer() };
-            SpawnShips(battlefield, random, ships);
+            SpawnShips(battlefield, ships);
 
             var game = new Game(battlefield, playerScore);
             return game;
@@ -30,24 +30,24 @@ namespace BattleshipsEngine
             battlefield.AcquireFields(fields);
         }
 
-        private void SpawnShips(IBattlefield battlefield, Random random, IShip[] ships)
+        private void InitializeFields(Field[,] fields)
+        {
+            for (int i = 0; i < BattlefieldSize; i++)
+            {
+                for (int j = 0; j < BattlefieldSize; j++)
+                {
+                    fields[i, j] = new Field();
+                }
+            }
+        }
+
+        private void SpawnShips(IBattlefield battlefield, IShip[] ships)
         {
             var shipSpawner = new ShipSpawner(battlefield, random);
             foreach (IShip ship in ships)
             {
                 bool result = shipSpawner.SpawnShip(ship);
                 Debug.Assert(result, "Spawning Ships failed");
-            }
-        }
-
-        private void InitializeFields(Field[,] fields)
-        {
-            for (int i=0; i < BattlefieldSize; i++)
-            {
-                for (int j=0; j < BattlefieldSize; j++)
-                {
-                    fields[i, j] = new Field();
-                }
             }
         }
 
