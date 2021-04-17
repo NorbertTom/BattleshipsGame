@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class GameInitializerTests
     {
         [Fact]
-        public void createGame()
+        public void CreateGame()
         {
             var random = new Random();
             var initializer = new GameInitializer(random);
