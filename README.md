@@ -3,7 +3,7 @@
 ## Task description
 
 The challenge is to program a simple version of the game Battleships (<a href = "https://www.youtube.com/watch?v=q0qpQ8doUp8">video</a>). 
-Create an application to allow a single human player to play a <b>one-sided game of Battleships</b against ships placed by the computer.
+Create an application to allow a single human player to play a <b>one-sided game of Battleships</b> against ships placed by the computer.
 
 The program should create a 10x10 grid, and place several ships on the grid at random with the following sizes:
 
