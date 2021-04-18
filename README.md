@@ -2,6 +2,8 @@
 
 ## Task description
 
+Task description taken from <a href = "https://medium.com/guestline-labs/hints-for-our-interview-process-and-code-test-ae647325f400">here</a>.
+
 The challenge is to program a simple version of the game Battleships (<a href = "https://www.youtube.com/watch?v=q0qpQ8doUp8">video</a>). 
 Create an application to allow a single human player to play a <b>one-sided game of Battleships</b> against ships placed by the computer.
 
