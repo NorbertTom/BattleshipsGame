@@ -31,8 +31,7 @@ namespace BattleshipsEngineTests
             foreach (var shotCoordinates in listOfHitShots)
             {
                 Assert.True(game.ShouldKeepPlaying());
-                var shotMgr = game.PrepareShot(shotCoordinates);
-                var shot = shotMgr.Shoot();
+                var shot = game.Shoot(shotCoordinates);
                 Assert.NotNull(shot.HitShip);
             }
             Assert.False(game.ShouldKeepPlaying());
