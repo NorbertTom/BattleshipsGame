@@ -6,7 +6,7 @@ namespace BattleshipsEngine
 {
     class Battlefield : IBattlefield
     {
-        public bool Acquire(IField[,] fields)
+        public bool AcquireFields(IField[,] fields)
         {
             bool result = false;
             
