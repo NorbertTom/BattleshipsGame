@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class GameTests
     {
         [Fact]
-        public void AfterCreatingGame_BattlefieldPropertyReturnsValidValue()
+        public void AfterCreatingGame_BattlefieldPropertyReturnsNotNull()
         {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();
@@ -35,7 +35,7 @@ namespace BattleshipsEngineTests
         [InlineData("C2", 2, 2)]
         [InlineData("F1", 5, 1)]
         [InlineData("J9", 9, 9)]
-        public void IfFieldWassAlreadyShot_ShootReturnsNull(string coordinates, int coordX, int coordY)
+        public void IfFieldWasAlreadyShot_ShootReturnsNull(string coordinates, int coordX, int coordY)
         {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();

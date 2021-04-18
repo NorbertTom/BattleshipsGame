@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class ShotTests
     {
         [Fact]
-        public void FiringInvalidShot_Fails()
+        public void FiringInvalidShot_ReturnsFalse()
         {
             var battlefield = new Mock<IBattlefield>();
             int[] coordinates = { 5, 3 };

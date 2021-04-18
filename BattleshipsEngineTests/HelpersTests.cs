@@ -12,7 +12,7 @@ namespace BattleshipsEngineTests
         [InlineData("F7", 5, 7)]
         [InlineData("J1", 9, 1)]
         [InlineData("J9", 9, 9)]
-        public void GivenValidInput_TranslatingCoordinatesWorkAsExpected(
+        public void GivenValidInput_TranslatesAlphaNumericCoordinatesToNumericCoordinates(
                             string coordString, int expectedX, int expectedY)
         {
             int[] expectedResult = { expectedX, expectedY };
