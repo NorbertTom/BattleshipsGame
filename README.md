@@ -33,4 +33,4 @@ Then you can enter command 'dotnet run' and the program should build and run.
 In case you use Visual Studio 2019 you need to open BattleshipsGame.sln solution file, open <i>Test</i> and choose <i>Run All Tests</i>.
 
 If you wish to run tests from command line you need to enter BattleshipsGameTests or BattleshipsEngineTests folder for
-BattleshipsGame or BattleshipsEngine tests respectively. Then you should enter 'dotnet test' command and tests should run corretly.
+BattleshipsGame or BattleshipsEngine tests respectively. Then you can enter command 'dotnet test' and tests should run correctly.
