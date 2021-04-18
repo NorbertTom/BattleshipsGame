@@ -34,7 +34,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void GetFieldCalledTwiceOnTheSameField_ReturnsTheSameField()
+        public void AfterShootingField_GetFieldStillReturnsTheSameField()
         {
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];

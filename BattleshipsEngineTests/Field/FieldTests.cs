@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class FieldTests
     {
         [Fact]
-        public void IsShotReturnsFalseForNewlyCreatedField()
+        public void GivenNewlyCreatedField_IsShotReturnsFalse()
         {
             var field = new Field();
             
