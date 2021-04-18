@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class GameTests
     {
         [Fact]
-        public void GetBattlefieldTest()
+        public void AfterCreatingGame_BattlefieldPropertyReturnsValidValue()
         {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();
@@ -18,7 +18,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void ShouldKeepPlayingTest()
+        public void CallingShouldKeepPlaying_CallsHasGameEndedOnce()
         {
             var battlefield = new Mock<IBattlefield>();
             var playerScore = new Mock<IPlayerScore>();

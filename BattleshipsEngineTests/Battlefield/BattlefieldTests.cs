@@ -7,7 +7,7 @@ namespace BattleshipsEngineTests
     public class BattlefieldTests
     {
         [Fact]
-        public void AcquireValidFieldsTest()
+        public void GivenValidInput_FieldsAreAcquired()
         {
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];
@@ -15,7 +15,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void AcquireInvalidFieldsTest()
+        public void GivenValidInput_FieldsAreNotAcquired()
         {
             var battlefield = new Battlefield();
             Field[,] fieldsInvalid = new Field[11, 11];
@@ -23,7 +23,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void GetField()
+        public void AfterAcquiringFields_GetFieldReturnsCorrectField()
         {
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];
@@ -34,7 +34,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void GetFieldThatWasPreviouslyShot()
+        public void GetFieldCalledTwiceOnTheSameField_ReturnsTheSameField()
         {
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];

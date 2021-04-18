@@ -7,7 +7,7 @@ namespace BattleshipsEngineTests
     public class ShipsTests
     {
         [Fact]
-        public void DestroyerConstructor()
+        public void AfterCreatingDestroyerShip_NameAndLenghtAreCorrect()
         {
             var destroyer = new Destroyer();
             Assert.Equal(4, destroyer.Length);
@@ -15,7 +15,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void BattleshipConstructor()
+        public void AfterCreatingBattleshipShip_NameAndLenghtAreCorrect()
         {
             var battleship = new Battleship();
             Assert.Equal(5, battleship.Length);
@@ -23,7 +23,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void DealingDamageToDestroyer()
+        public void AfterDealingDamageFourTimesToDestroyer_ItIsDestroyed()
         {
             var ship = new Destroyer();
             for (int i=0; i<ship.Length; i++)
@@ -35,7 +35,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void DealingDamageToBattleship()
+        public void AfterDealingDamageFiveTimesToBattleship_ItIsDestroyed()
         {
             var ship = new Battleship();
             for (int i = 0; i < ship.Length; i++)

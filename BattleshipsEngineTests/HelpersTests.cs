@@ -12,7 +12,8 @@ namespace BattleshipsEngineTests
         [InlineData("F7", 5, 7)]
         [InlineData("J1", 9, 1)]
         [InlineData("J9", 9, 9)]
-        public void TranslateCoordinatesTest(string coordString, int expectedX, int expectedY)
+        public void GivenValidInput_TranslatingCoordinatesWorkAsExpected(
+                            string coordString, int expectedX, int expectedY)
         {
             int[] expectedResult = { expectedX, expectedY };
             int[] actualResult = Helpers.TranslateCoordinates(coordString);

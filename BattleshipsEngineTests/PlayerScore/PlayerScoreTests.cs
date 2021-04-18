@@ -7,7 +7,7 @@ namespace BattleshipsEngineTests
     public class PlayerScoreTests
     {
         [Fact]
-        public void AddPoints()
+        public void AfterAddingPoint_CurrentScoreIsEqualTo1()
         {
             var playerScore = new PlayerScore(13);
             Assert.Equal(0, playerScore.CurrentScore);
@@ -16,7 +16,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void EndOfTheGame()
+        public void AfterAdding13Points_GameEnds()
         {
             var playerScore = new PlayerScore(13);
             Assert.False(playerScore.HasGameEnded());

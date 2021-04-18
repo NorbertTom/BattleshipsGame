@@ -8,7 +8,7 @@ namespace BattleshipsEngineTests
     public class FieldTests
     {
         [Fact]
-        public void IfFieldWasShot()
+        public void IsShotReturnsFalseForNewlyCreatedField()
         {
             var field = new Field();
             
@@ -16,7 +16,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void ShootEmptyField()
+        public void AfterShootingField_IsShotReturnsTrue()
         {
             var field = new Field();
 
@@ -26,7 +26,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void PlaceShipAndShootIt()
+        public void WhenShootingFieldWithShip_ShootReturnsShipObject()
         {
             var mockShip = new Mock<IShip>();
             var field = new Field();
@@ -39,7 +39,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void IsShipThereTest()
+        public void IfFieldHasShip_IsShipThereReturnsTrue()
         {
             var mockShip = new Mock<IShip>();
             var field = new Field();

@@ -12,7 +12,7 @@ namespace BattleshipsGameTests
         [InlineData("J9")]
         [InlineData("B1")]
         [InlineData("D7")]
-        public void ValidateCoordinates_Valid(string validInput)
+        public void GivenValidInput_ReturnsTrue(string validInput)
         {
             Assert.True(ValidateUserInput.Coordinates(validInput));
         }
@@ -23,7 +23,7 @@ namespace BattleshipsGameTests
         [InlineData("X9")]
         [InlineData("B10")]
         [InlineData("8X")]
-        public void ValidateCoordinates_invalid(string invalidInput)
+        public void GivenInvalidInput_ReturnsFalse(string invalidInput)
         {
             Assert.False(ValidateUserInput.Coordinates(invalidInput));
         }
