@@ -27,7 +27,7 @@ namespace BattleshipsEngine
         {
             var fields = new Field[BattlefieldSize, BattlefieldSize];
             InitializeFields(fields);
-            battlefield.AcquireFields(fields);
+            battlefield.Acquire(fields);
         }
 
         private void InitializeFields(Field[,] fields)

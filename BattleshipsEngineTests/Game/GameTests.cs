@@ -41,7 +41,7 @@ namespace BattleshipsEngineTests
             var playerScore = new Mock<IPlayerScore>();
             var field = new Mock<IField>();
             battlefield.Setup(x => x.GetField(coordX, coordY)).Returns(field.Object);
-            field.Setup(x => x.IfShot()).Returns(true);
+            field.Setup(x => x.IsShot()).Returns(true);
 
             var game = new Game(battlefield.Object, playerScore.Object);
 
@@ -59,7 +59,7 @@ namespace BattleshipsEngineTests
             var playerScore = new Mock<IPlayerScore>();
             var field = new Mock<IField>();
             battlefield.Setup(x => x.GetField(coordX, coordY)).Returns(field.Object);
-            field.Setup(x => x.IfShot()).Returns(false);
+            field.Setup(x => x.IsShot()).Returns(false);
 
             var game = new Game(battlefield.Object, playerScore.Object);
             

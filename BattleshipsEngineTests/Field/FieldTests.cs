@@ -12,7 +12,7 @@ namespace BattleshipsEngineTests
         {
             var field = new Field();
             
-            Assert.False(field.IfShot());
+            Assert.False(field.IsShot());
         }
 
         [Fact]
@@ -20,9 +20,9 @@ namespace BattleshipsEngineTests
         {
             var field = new Field();
 
-            Assert.False(field.IfShot());
+            Assert.False(field.IsShot());
             Assert.Null(field.Shoot());
-            Assert.True(field.IfShot());
+            Assert.True(field.IsShot());
         }
 
         [Fact]
@@ -33,9 +33,9 @@ namespace BattleshipsEngineTests
             
             field.PlaceShip(mockShip.Object);
          
-            Assert.False(field.IfShot());
+            Assert.False(field.IsShot());
             Assert.Equal(mockShip.Object, field.Shoot());
-            Assert.True(field.IfShot());
+            Assert.True(field.IsShot());
         }
 
         [Fact]

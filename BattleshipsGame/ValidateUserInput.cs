@@ -6,14 +6,7 @@ namespace BattleshipsGame
     {
         public static bool Coordinates(string coordinates)
         {
-            bool isInputValid = false;
-            if (coordinates.Length==2 
-                && IsValidLetter(coordinates[0])
-                && IsValidNumber(coordinates[1]))
-            {
-                isInputValid = true;
-            }
-            return isInputValid;
+            return coordinates.Length == 2 && IsValidLetter(coordinates[0]) && IsValidNumber(coordinates[1]);
         }
 
         private static bool IsValidLetter(char character)

@@ -4,10 +4,7 @@ namespace BattleshipsEngine
 {
     class Field : IField
     {
-        public Field()
-        { }
-
-        public bool IfShot() { return wasShot; }
+        public bool IsShot() { return wasShot; }
         public void PlaceShip(IShip ship) { this.ship = ship; }
 
         public IShip Shoot()

@@ -15,7 +15,7 @@ namespace BattleshipsEngineTests
             var field = new Mock<IField>();
 
             battlefield.Setup(x => x.GetField(coordinates[0], coordinates[1])).Returns(field.Object);
-            field.Setup(x => x.IfShot()).Returns(true);
+            field.Setup(x => x.IsShot()).Returns(true);
 
             var newShot = new Shot(battlefield.Object, coordinates);
             Assert.False(newShot.Fire());
@@ -32,7 +32,7 @@ namespace BattleshipsEngineTests
             var ship = new Mock<IShip>();
 
             battlefield.Setup(x => x.GetField(coordinates[0], coordinates[1])).Returns(field.Object);
-            field.Setup(x => x.IfShot()).Returns(false);
+            field.Setup(x => x.IsShot()).Returns(false);
             field.Setup(x => x.Shoot()).Returns((IShip)null);
 
             var newShot = new Shot(battlefield.Object, coordinates);
@@ -50,7 +50,7 @@ namespace BattleshipsEngineTests
             var ship = new Mock<IShip>();
 
             battlefield.Setup(x => x.GetField(coordinates[0], coordinates[1])).Returns(field.Object);
-            field.Setup(x => x.IfShot()).Returns(false);
+            field.Setup(x => x.IsShot()).Returns(false);
             field.Setup(x => x.Shoot()).Returns(ship.Object);
 
             var newShot = new Shot(battlefield.Object, coordinates);

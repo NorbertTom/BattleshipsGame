@@ -11,7 +11,7 @@ namespace BattleshipsEngineTests
         {
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];
-            Assert.True(battlefield.AcquireFields(fields));
+            Assert.True(battlefield.Acquire(fields));
         }
 
         [Fact]
@@ -19,7 +19,7 @@ namespace BattleshipsEngineTests
         {
             var battlefield = new Battlefield();
             Field[,] fieldsInvalid = new Field[11, 11];
-            Assert.False(battlefield.AcquireFields(fieldsInvalid));
+            Assert.False(battlefield.Acquire(fieldsInvalid));
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace BattleshipsEngineTests
             Field[,] fields = new Field[10, 10];
             InitializeFields(fields);
             var someField = fields[4, 7];
-            Assert.True(battlefield.AcquireFields(fields));
+            Assert.True(battlefield.Acquire(fields));
             Assert.Equal(someField, battlefield.GetField(4, 7));
         }
 
@@ -39,10 +39,10 @@ namespace BattleshipsEngineTests
             var battlefield = new Battlefield();
             Field[,] fields = new Field[10, 10];
             InitializeFields(fields);
-            battlefield.AcquireFields(fields);
-            Assert.False(battlefield.GetField(3, 9).IfShot());
+            battlefield.Acquire(fields);
+            Assert.False(battlefield.GetField(3, 9).IsShot());
             battlefield.GetField(3, 9).Shoot();
-            Assert.True(battlefield.GetField(3, 9).IfShot());
+            Assert.True(battlefield.GetField(3, 9).IsShot());
         }
 
         private void InitializeFields(Field[,] fields)

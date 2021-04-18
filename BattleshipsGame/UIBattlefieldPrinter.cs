@@ -44,7 +44,7 @@ namespace BattleshipsGame
         private void PrintField(int rowNr, int columnNr)
         {
             IField field = battlefield.GetField(columnNr, rowNr);
-            bool isFieldShot = field.IfShot();
+            bool isFieldShot = field.IsShot();
             if (isFieldShot)
             {
                 if (field.IsShipThere())

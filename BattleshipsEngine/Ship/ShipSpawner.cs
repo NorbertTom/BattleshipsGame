@@ -60,7 +60,7 @@ namespace BattleshipsEngine
 
             for (int i = 0; i < shipsLength; i++)
             {
-                int[] currentPosition = startingPosition.Clone() as int[];
+                int[] currentPosition = (int[])startingPosition.Clone();
                 currentPosition[shipsDirection] = startingPosition[shipsDirection] + i;
 
                 if (currentPosition[0] > BattlefieldHighestIndex || currentPosition[1] > BattlefieldHighestIndex)

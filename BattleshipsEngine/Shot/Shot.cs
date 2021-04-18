@@ -11,16 +11,13 @@ namespace BattleshipsEngine
 
         public bool Fire()
         {
-            if (IsShotValid())
-            {
-                HitShip = field.Shoot();
-            }
+            HitShip = field.Shoot();
             return HitShip != null;
         }
 
         public bool IsShotValid()
         {
-            return !(field.IfShot());
+            return !(field.IsShot());
         }
 
         public IShip HitShip { get; private set; }
