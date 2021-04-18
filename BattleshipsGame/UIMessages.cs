@@ -41,6 +41,11 @@ namespace BattleshipsGame
             Console.WriteLine("HIT: " + shipsName);
         }
 
+        public static void ShipDestroyedMessage()
+        {
+            Console.WriteLine("You sunk the ship");
+        }
+
         public static void GameEndMessage()
         {
             Console.WriteLine("You destroyed all ships. Congratulations!");

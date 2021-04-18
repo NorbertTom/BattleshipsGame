@@ -38,28 +38,25 @@ namespace BattleshipsGame
             }
 
             var shot = game.Shoot(coordsInput);
-            if (shot==null)
+            if (shot == null)
             {
                 UIMessages.FieldAlreadyShotMessage();
                 return;
             }
 
-            if (shot.HitShip != null)
-            {
-                string message = GetInfoAboutShip(shot.HitShip);
-                UIMessages.HitMessage(message);
-            }
-            else
+            var ship = shot.HitShip;
+            if (ship == null)
             {
                 UIMessages.MissMessage();
+                return;
             }
-        }
 
-        static string GetInfoAboutShip(IShip ship)
-        {
-            string message = ship.Name;
-            message = ship.IsDestroyed() ? message + ". You sunk the ship." : message;
-            return message;
+            UIMessages.HitMessage(ship.Name);
+
+            if (ship.IsDestroyed())
+            {
+                UIMessages.ShipDestroyedMessage();
+            }
         }
     }
 }
