@@ -15,7 +15,7 @@ namespace BattleshipsEngineTests
         }
 
         [Fact]
-        public void GivenValidInput_FieldsAreNotAcquired()
+        public void GivenInvalidInput_FieldsAreNotAcquired()
         {
             var battlefield = new Battlefield();
             Field[,] fieldsInvalid = new Field[11, 11];
